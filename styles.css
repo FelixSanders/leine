@@ -1,0 +1,188 @@
+::-webkit-scrollbar {
+    width: 0px;
+}
+
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px rgb(91, 196, 102);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #000000d0;
+    border-radius: 10px;
+}
+
+
+.arapey-regular {
+    font-family: "Arapey", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.arapey-regular-italic {
+    font-family: "Arapey", serif;
+    font-weight: 400;
+    font-style: italic;
+}
+
+.title-font {
+    font-family: "Arapey", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+h2 {
+    font-family: "Manrope", serif;
+    font-optical-sizing: auto;
+    font-weight: 800;
+    font-style: normal;
+    font-size: 2em;
+    text-align: center;
+    text-decoration: underline;
+}
+
+.subhead-font {
+    font-family: "Manrope", serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+}
+
+.text-font {
+    font-family: "Manrope", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;  
+}
+
+/* Header Styles */
+header {
+    background-color: #000;
+    color: #fff;
+    padding: 10px;
+    margin: 0;
+    text-align: center;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    transition: transform 0.3s ease, background-color 0.5s ease-in;
+}
+
+header h1 {
+    margin: 10px;
+    font-size: 3em;
+}
+
+/* Banner Image Container */
+.image-container {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    margin: 50px auto; /* Add margin to avoid overlap with the fixed header */
+}
+
+.image-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+    max-height: 80vh; /* Limits image height for better responsiveness */
+    object-fit: cover;
+}
+
+/* Text Overlay */
+.text-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 5em;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    text-align: center;
+}
+
+
+.product-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 20px auto;
+    border: 3px solid #000;
+}
+
+.product-image {
+    max-width: 40%;
+    height: auto;
+}
+
+.product-details {
+    max-width: 55%;
+    text-align: left;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+}
+
+.product-availability {
+    color: red;
+    font-size: 1em;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 10px;
+}
+
+.product-text {
+    font-size: 1.3em;
+    margin: 10px 0;
+}
+
+.product-price {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin: 10px 0;
+    color: #333;
+}
+
+.purchase-button {
+    padding: 10px 20px;
+    font-size: 1em;
+    color: #000;
+    background-color: transparent;
+    border: 2px solid #000;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.purchase-button:hover {
+    background-color: #000;
+    color: #fff;
+}
+
+
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .product-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .product-image {
+        max-width: 90%;
+        margin-bottom: 20px;
+    }
+
+    .product-details {
+        max-width: 90%;
+    }
+}
