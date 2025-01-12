@@ -10,9 +10,12 @@ const monthNames = [
 const currentDate = new Date();
 const currentMonth = currentDate.getMonth();
 
+// Display the current month
 document.getElementById('current-month').textContent = monthNames[currentMonth];
 
-// Countdown function for next month
+document.getElementById('next-month').textContent = monthNames[currentMonth + 1];
+
+
 function startCountdownToNextMonth(display) {
     const now = new Date();
     const nextMonth = new Date(now.getFullYear(), now.getMonth() + 1, 1); // Start of the next month
@@ -35,9 +38,24 @@ function startCountdownToNextMonth(display) {
 
         if (--timer < 0) {
             clearInterval(interval);
-            display.textContent = "Offer expired!";
+            location.reload()
         }
     }, 1000);
+}
+
+function convertToDriveImageUrl(driveLink) {
+    if (driveLink) {
+        const match = driveLink.match(/\/d\/([a-zA-Z0-9_-]+)\//);
+        if (match) {
+            return `https://drive.google.com/thumbnail?id=${match[1]}&sz=w1000`;
+        } else {
+            console.error("Google Drive link format is invalid.");
+            return 'images/item/Placeholder.png';
+        }
+    } else {
+        console.error("Google Drive link format is invalid.");
+        return 'images/item/Placeholder.png';
+    }
 }
 
 // Update the product info section after fetching data from the sheet
@@ -48,27 +66,32 @@ function fetchSheetData() {
         .then(response => response.json())
         .then(data => {
             const rows = data.values;
-            const currentMonthData = rows[currentMonth]; // Get the data for the current month
+            const currentMonthData = rows[currentMonth];
 
             if (currentMonthData) {
-                const itemName = currentMonthData[1]; // Item Name
-                const price = currentMonthData[2]; // Price
-                const tokopediaLink = currentMonthData[3]; // Tokopedia Link
-                const shopeeLink = currentMonthData[4]; // Shopee Link
-                const imageLink = currentMonthData[5]; // Image Link
+                const itemName = currentMonthData[1];
+                const price = currentMonthData[2];
+                const tokopediaLink = currentMonthData[3];
+                const shopeeLink = currentMonthData[4];
+                const imageLink = convertToDriveImageUrl(currentMonthData[5]);
+                const upcomingImageLink = convertToDriveImageUrl(rows[currentMonth + 1][5]);
 
-                // Update the current section with the fetched data
+                // Update the DOM
                 document.getElementById('product-name').textContent = itemName;
                 document.getElementById('product-price').textContent = price;
                 document.getElementById('tokopedia-link').href = tokopediaLink;
                 document.getElementById('shopee-link').href = shopeeLink;
                 document.getElementById('product-image').src = imageLink;
+
+                document.getElementById('upcoming-image').src = upcomingImageLink;
+
+                if (upcomingImageLink != 'images/item/Placeholder.png') {
+                    document.getElementById('upcoming-image').classList.add('darkened');
+                }
             }
         })
         .catch(error => console.error('Error fetching data from Google Sheets:', error));
 }
-
-
 
 document.addEventListener("DOMContentLoaded", () => {
     const timerElement = document.getElementById("timer");
@@ -76,22 +99,17 @@ document.addEventListener("DOMContentLoaded", () => {
     fetchSheetData();
 });
 
+document.addEventListener("DOMContentLoaded", () => {
+    const timerElement = document.getElementById("next-timer");
+    startCountdownToNextMonth(timerElement);
+});
+
 document.getElementById("purchase-btn").addEventListener("click", function () {
     document.getElementById("popup-modal").style.display = "flex";
-
     document.body.classList.add("no-scroll");
 });
 
 document.getElementById("close-btn").addEventListener("click", function () {
     document.getElementById("popup-modal").style.display = "none";
-
     document.body.classList.remove("no-scroll");
-});
-
-document.addEventListener("DOMContentLoaded", function () {
-    const cardTexts = document.querySelectorAll(".card-text");
-    cardTexts.forEach((cardText, index) => {
-        const nextMonthIndex = (currentMonth + index + 1) % 12; // Calculate the next month
-        cardText.innerHTML = `Coming: <b>${monthNames[nextMonthIndex]} </b>`;
-    });
 });

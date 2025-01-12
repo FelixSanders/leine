@@ -10,18 +10,18 @@
     <link href="https://fonts.googleapis.com/css2?family=Arapey:ital@0;1&family=Manrope:wght@200..800&display=swap" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
     <link rel="stylesheet" href="styles.css">
-    <title>Leiné</title>
+    <title>LEINÉ</title>
 </head>
 
 <body>
     <header>
-        <h1 class="title-font">Leiné</h1>
+        <h1 class="title-font">LEINÉ</h1>
     </header>
 
     <div class="banner-section">
         <div class="image-container">
             <img src="images/banner/1.png" alt="Sample Image">
-            <div class="text-overlay title-font">Leiné</div>
+            <div class="text-overlay title-font">LEINÉ</div>
         </div>
     </div>
 
@@ -33,10 +33,10 @@
             <p id="current-month" class="subhead-font" style="text-align: center; font-size: 2.5em; margin-bottom: 5px;"></p>
         </div>
         <div class="product-container">
-            <img src="images/banner/1.png" alt="Product Image" class="product-image" id="product-image">
+            <img src="images/item/Placeholder.png" alt="Product Image" class="product-image" id="product-image">
             <div class="product-details">
                 <p id="availability-timer" class="text-font product-availability">
-                    <i class="fa-regular fa-clock"></i> Available for <b><span id="timer">00:00:00</span></b>
+                    <i class="fa-regular fa-clock"></i> Available for <b><span id="timer"></span></b>
                 </p>
                 <p class="text-font product-text" id="product-name"></p>
                 <p class="text-font product-price" id="product-price"></p>
@@ -51,22 +51,19 @@
             <h2 class="head-font">UPCOMING</h2>
             <p id="current-month" class="subhead-font" style="text-align: center; font-size: 2em;"></p>
         </div>
-        <div class="cards-container">
-            <div class="card">
-                <img src="images/item/Placeholder.png" alt="Image 1" class="card-image">
-                <p class="card-text">Card 1</p>
+        <div class="product-container upcoming-container">
+            <img id="upcoming-image" src="images/item/Placeholder.png" alt="Product Image" class="product-image">
+            <div class="product-details upcoming-details">
+                <p class="text-font product-text">???</p>
+                <p class="text-font product-price">Rp???</p>
+                <button class="purchase-button text-font">Purchase</button>
             </div>
-            <div class="card">
-                <img src="images/item/Placeholder.png" alt="Image 2" class="card-image">
-                <p class="card-text">Card 2</p>
-            </div>
-            <div class="card">
-                <img src="images/item/Placeholder.png" alt="Image 3" class="card-image">
-                <p class="card-text">Card 3</p>
-            </div>
-            <div class="card">
-                <img src="images/item/Placeholder.png" alt="Image 4" class="card-image">
-                <p class="card-text">Card 4</p>
+            <div class="overlay-text">
+                <p class="text-font">Coming soon</p>
+                <p id="next-month" class="subhead-font next-month" style="text-align: center; font-size: 2em;"></p>
+                <p class="text-font timer">
+                    <i class="fa-regular fa-clock"></i> <b><span id="next-timer"></span></b>
+                </p>
             </div>
         </div>
     </section>
