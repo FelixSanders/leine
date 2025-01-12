@@ -73,15 +73,15 @@ header {
 }
 
 header h1 {
-    margin: 10px;
-    font-size: 3em;
+    margin: 5px;
+    font-size: 2.5em;
 }
 
 /* Banner Image Container */
 .image-container {
     position: relative;
     width: 100%;
-    max-width: 600px;
+    /*max-width: 600px;*/
     margin: 50px auto; /* Add margin to avoid overlap with the fixed header */
 }
 
@@ -222,13 +222,11 @@ header h1 {
     color: #000000;
 }
 
-/* Popup Text */
 .popup-text {
     font-size: 1.2em;
     margin-bottom: 20px;
 }
 
-/* Popup Links as Buttons */
 .popup-button {
     display: block;
     width: 100%;
@@ -238,7 +236,7 @@ header h1 {
     text-decoration: none;
     text-align: center;
     color: rgb(0, 0, 0);
-    background-color: #000;
+    background-color: transparent;
     border: 2px solid #000;
     border-radius: 5px;
     transition: background-color 0.3s ease;
@@ -249,7 +247,7 @@ header h1 {
 }
 
 .popup-button:hover {
-    background-color: #fff;
+    background-color: #000;
 }
 
 /* Cards Section */
@@ -282,8 +280,7 @@ header h1 {
     display: inline-block;
     vertical-align: top;
     background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
     padding: 15px;
     min-width: 150px;
     max-width: 200px;
@@ -339,4 +336,9 @@ header h1 {
     .product-details {
         max-width: 90%;
     }
+}
+
+
+.no-scroll {
+    overflow: hidden;
 }

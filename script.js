@@ -1,11 +1,18 @@
+const SPREADSHEET_ID = '1fs9p0wUwJxyDwiLaSJ9ZH9K9FZS1tjAV_1hrX_mzuic'; // Google Sheet ID
+const API_KEY = 'AIzaSyB9X6vArhzlQtB8eLtd3fRJmf4tyA_OkCo';
+const RANGE = 'Sheet1!A2:F';
+
 const monthNames = [
     "January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"
 ];
 
-const currentMonth = new Date().getMonth(); // Get the current month (0-11)
+const currentDate = new Date();
+const currentMonth = currentDate.getMonth();
+
 document.getElementById('current-month').textContent = monthNames[currentMonth];
 
+// Countdown function for next month
 function startCountdownToNextMonth(display) {
     const now = new Date();
     const nextMonth = new Date(now.getFullYear(), now.getMonth() + 1, 1); // Start of the next month
@@ -23,8 +30,8 @@ function startCountdownToNextMonth(display) {
         display.textContent = `${days.toString().padStart(2, '0')}:${hours
             .toString()
             .padStart(2, '0')}:${minutes
-            .toString()
-            .padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                .toString()
+                .padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
 
         if (--timer < 0) {
             clearInterval(interval);
@@ -33,17 +40,58 @@ function startCountdownToNextMonth(display) {
     }, 1000);
 }
 
+// Update the product info section after fetching data from the sheet
+function fetchSheetData() {
+    const url = `https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/${RANGE}?key=${API_KEY}`;
+
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            const rows = data.values;
+            const currentMonthData = rows[currentMonth]; // Get the data for the current month
+
+            if (currentMonthData) {
+                const itemName = currentMonthData[1]; // Item Name
+                const price = currentMonthData[2]; // Price
+                const tokopediaLink = currentMonthData[3]; // Tokopedia Link
+                const shopeeLink = currentMonthData[4]; // Shopee Link
+                const imageLink = currentMonthData[5]; // Image Link
+
+                // Update the current section with the fetched data
+                document.getElementById('product-name').textContent = itemName;
+                document.getElementById('product-price').textContent = price;
+                document.getElementById('tokopedia-link').href = tokopediaLink;
+                document.getElementById('shopee-link').href = shopeeLink;
+                document.getElementById('product-image').src = imageLink;
+            }
+        })
+        .catch(error => console.error('Error fetching data from Google Sheets:', error));
+}
+
+
+
 document.addEventListener("DOMContentLoaded", () => {
     const timerElement = document.getElementById("timer");
     startCountdownToNextMonth(timerElement);
+    fetchSheetData();
 });
 
 document.getElementById("purchase-btn").addEventListener("click", function () {
-    // Show the popup
     document.getElementById("popup-modal").style.display = "flex";
+
+    document.body.classList.add("no-scroll");
 });
 
 document.getElementById("close-btn").addEventListener("click", function () {
-    // Hide the popup when the close button is clicked
     document.getElementById("popup-modal").style.display = "none";
+
+    document.body.classList.remove("no-scroll");
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    const cardTexts = document.querySelectorAll(".card-text");
+    cardTexts.forEach((cardText, index) => {
+        const nextMonthIndex = (currentMonth + index + 1) % 12; // Calculate the next month
+        cardText.innerHTML = `Coming: <b>${monthNames[nextMonthIndex]} </b>`;
+    });
 });
