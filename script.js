@@ -37,3 +37,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const timerElement = document.getElementById("timer");
     startCountdownToNextMonth(timerElement);
 });
+
+document.getElementById("purchase-btn").addEventListener("click", function () {
+    // Show the popup
+    document.getElementById("popup-modal").style.display = "flex";
+});
+
+document.getElementById("close-btn").addEventListener("click", function () {
+    // Hide the popup when the close button is clicked
+    document.getElementById("popup-modal").style.display = "none";
+});

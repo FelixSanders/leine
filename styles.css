@@ -36,9 +36,10 @@ h2 {
     font-optical-sizing: auto;
     font-weight: 800;
     font-style: normal;
-    font-size: 2em;
+    font-size: 1.3em;
     text-align: center;
     text-decoration: underline;
+    margin: 5px;
 }
 
 .subhead-font {
@@ -46,6 +47,7 @@ h2 {
     font-optical-sizing: auto;
     font-weight: 700;
     font-style: normal;
+    margin-top: 10px;
 }
 
 .text-font {
@@ -91,7 +93,7 @@ header h1 {
     object-fit: cover;
 }
 
-/* Text Overlay */
+
 .text-overlay {
     position: absolute;
     top: 50%;
@@ -103,6 +105,13 @@ header h1 {
     text-align: center;
 }
 
+.banner-section {
+    margin: 50px;
+}
+
+.current-section {
+    margin: 75px;
+}
 
 .product-container {
     display: flex;
@@ -135,12 +144,13 @@ header h1 {
     display: flex;
     align-items: center;
     gap: 5px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 
 .product-text {
     font-size: 1.3em;
     margin: 10px 0;
+    margin-bottom: 5px;
 }
 
 .product-price {
@@ -153,8 +163,8 @@ header h1 {
 .purchase-button {
     padding: 10px 20px;
     font-size: 1em;
-    color: #000;
-    background-color: transparent;
+    color: #fff;
+    background-color: #000;
     border: 2px solid #000;
     border-radius: 5px;
     cursor: pointer;
@@ -162,12 +172,152 @@ header h1 {
 }
 
 .purchase-button:hover {
-    background-color: #000;
-    color: #fff;
+    background-color: #fff;
+    color: #000000;
 }
 
 
+/* Popup Overlay */
+.popup-overlay {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
 
+/* Popup Content */
+.popup-content {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 300px;
+    position: relative;
+}
+
+/* Close Button */
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #333;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close-btn:hover {
+    color: #000000;
+}
+
+/* Popup Text */
+.popup-text {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
+/* Popup Links as Buttons */
+.popup-button {
+    display: block;
+    width: 100%;
+    padding: 10px 0;
+    margin: 10px 0;
+    font-size: 1em;
+    text-decoration: none;
+    text-align: center;
+    color: rgb(0, 0, 0);
+    background-color: #000;
+    border: 2px solid #000;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.popup-button img {
+    max-height: 3em;
+}
+
+.popup-button:hover {
+    background-color: #fff;
+}
+/* Cards Section */
+.cards-section {
+    width: 100%;
+    padding: 20px 0;
+    background-color: #f9f9f9;
+}
+
+.cards-container {
+    display: flex;
+    justify-content: center; /* Center cards horizontally */
+    gap: 20px; /* Space between cards */
+    overflow-x: auto; /* Allow horizontal scrolling for small screens */
+    scroll-behavior: smooth; /* Smooth scrolling */
+    padding: 10px;
+}
+
+/* Remove scrollbar on PC but keep scrolling on mobile */
+.cards-container::-webkit-scrollbar {
+    display: none; /* Hide scrollbar for Webkit browsers */
+}
+.cards-container {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+
+/* Individual Card */
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    padding: 15px;
+    min-width: 150px; /* Card width for scrolling on mobile */
+    max-width: 200px; /* Limit card width */
+}
+
+.card-image {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    object-fit: cover;
+}
+
+.card-text {
+    margin-top: 10px;
+    font-size: 1em;
+    font-family: "Manrope", serif;
+    color: #333;
+}
+
+/* Responsive Behavior */
+@media (min-width: 769px) {
+    .cards-container {
+        overflow-x: hidden; /* Disable horizontal scrolling on PC */
+        justify-content: center;
+        gap: 30px;
+    }
+    .card {
+        flex: 1;
+    }
+}
+/* Responsive Design for Popup */
+@media (max-width: 768px) {
+    .popup-content {
+        width: 90%;
+    }
+}
 
 /* Responsive Design */
 @media (max-width: 768px) {

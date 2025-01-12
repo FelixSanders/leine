@@ -25,26 +25,56 @@
     </section>
 
     <section class="current-section">
-        <div>
+        <div class="section-head">
             <h2 class="head-font">THIS MONTH'S CATALOGUE</h2>
-            <p id="current-month" class="subhead-font" style="text-align: center; font-size: 2em;"></p>
+            <p id="current-month" class="subhead-font" style="text-align: center; font-size: 2.5em; margin-bottom: 5px;"></p>
         </div>
         <div class="product-container">
             <img src="images/banner/1.png" alt="Product Image" class="product-image">
             <div class="product-details">
                 <p id="availability-timer" class="text-font product-availability">
-                    <i class="fa-regular fa-clock"></i> Available for <span id="timer">00:00:00</span>
+                    <i class="fa-regular fa-clock"></i> Available for <b><span id="timer">00:00:00</span></b>
                 </p>
                 <p class="text-font product-text">Item Name 1234</p>
                 <p class="text-font product-price">Rp999.999,00</p>
-                <button class="purchase-button">Purchase</button>
+                <button class="purchase-button text-font" id="purchase-btn">Purchase</button>
             </div>
         </div>
     </section>
 
-    <section>
-
+    <section class="upcoming-section">
+        <div>
+            <h2 class="head-font">UPCOMING</h2>
+            <p id="current-month" class="subhead-font" style="text-align: center; font-size: 2em;"></p>
+        </div>
+        <div class="cards-container">
+            <div class="card">
+                <img src="images/item/Placeholder.png" alt="Card Image 1" class="card-image">
+                <p class="card-text">Card 1 Description</p>
+            </div>
+            <div class="card">
+                <img src="images/item/Placeholder.png" alt="Card Image 2" class="card-image">
+                <p class="card-text">Card 2 Description</p>
+            </div>
+            <div class="card">
+                <img src="images/item/Placeholder.png" alt="Card Image 3" class="card-image">
+                <p class="card-text">Card 3 Description</p>
+            </div>
+            <div class="card">
+                <img src="images/item/Placeholder.png" alt="Card Image 4" class="card-image">
+                <p class="card-text">Card 4 Description</p>
+            </div>
+        </div>
     </section>
+
+    <div id="popup-modal" class="popup-overlay">
+        <div class="popup-content">
+            <button class="close-btn" id="close-btn">&times;</button>
+            <p class="popup-text text-font">Choose a channel</p>
+            <a href="#" class="popup-button"><img src="images/icon/tokopedia.svg"></a>
+            <a href="#" class="popup-button"><img src="images/icon/shopee.svg"></a>
+        </div>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>
