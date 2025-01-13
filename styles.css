@@ -12,6 +12,14 @@
     border-radius: 10px;
 }
 
+@font-face {
+    font-family: 'Sloop';
+    src: url('fonts/sloop_script_regular-webfont.woff2') format('woff2'),
+         url('fonts/sloop_script_regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
 
 .arapey-regular {
     font-family: "Arapey", serif;
@@ -27,6 +35,12 @@
 
 .title-font {
     font-family: "Arapey", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.slogan-font {
+    font-family: "Sloop", Arial ,sans-serif;
     font-weight: 400;
     font-style: normal;
 }
@@ -61,7 +75,7 @@ h2 {
 header {
     background-color: #000;
     color: #fff;
-    padding: 10px;
+    padding: 5px;
     margin: 0;
     text-align: center;
     width: 100%;
@@ -74,9 +88,14 @@ header {
 
 header h1 {
     margin: 5px;
-    font-size: 2.5em;
+    font-size: 2rem;
 }
 
+
+header p {
+    margin: 5px;
+    font-size: 1.5em;
+}
 
 .banner-section {
     margin-top: 50px;
