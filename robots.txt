@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://felixsanders.com/sitemap.xml
