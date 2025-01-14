@@ -19,8 +19,8 @@
 
 <body>
     <header>
-            <h1 id="header-text" class="title-font">LEINÉ</h1>
-            <p id="header-text" class="slogan-font">own your style</p>
+        <h1 id="header-text" class="title-font">LEINÉ</h1>
+        <p id="header-text" class="slogan-font">own your style</p>
 
     </header>
 
@@ -46,7 +46,8 @@
                 </p>
                 <p class="text-font product-text" id="product-name"></p>
                 <p class="text-font product-price" id="product-price"></p>
-                <button class="purchase-button text-font" id="purchase-btn">Purchase</button>
+                <button class="purchase-button text-font" id="purchase-btn"><i class="fa-solid fa-cart-shopping"></i>
+                    Purchase</button>
             </div>
         </div>
     </section>
@@ -62,7 +63,7 @@
             <div class="product-details upcoming-details">
                 <p class="text-font product-text">???</p>
                 <p class="text-font product-price">Rp???</p>
-                <button class="purchase-button text-font">Purchase</button>
+                <button class="purchase-button text-font"><i class="fa-solid fa-cart-shopping"></i> Purchase</button>
             </div>
             <div class="overlay-text">
                 <p class="text-font">Coming soon</p>
@@ -74,15 +75,57 @@
         </div>
     </section>
 
+    <hr>
+
+    <section class="about-us">
+        <div class="text">
+            <h2>ABOUT US</h2>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo vel cum soluta, ratione dolorem
+                deleniti harum ducimus dicta quos velit debitis id eum quaerat libero voluptatum rem! Aut, blanditiis
+                incidunt!
+            </p>
+        </div>
+        <div class="image">
+            <img src="images/banner/1.png" alt="About Us">
+        </div>
+    </section>
+
     <div id="popup-modal" class="popup-overlay">
         <div class="popup-content">
             <button class="close-btn" id="close-btn">&times;</button>
             <p class="popup-text text-font">Choose a channel</p>
-            <a href="#" class="popup-button" id="tokopedia-link"><img src="images/icon/tokopedia.svg"
+            <a href="#" target="_blank" class="popup-button" id="tokopedia-link"><img src="images/icon/tokopedia.svg"
                     alt="Tokopedia"></a>
-            <a href="#" class="popup-button" id="shopee-link"><img src="images/icon/shopee.svg" alt="Shopee"></a>
+            <a href="#" target="_blank" class="popup-button" id="shopee-link"><img src="images/icon/shopee.svg"
+                    alt="Shopee"></a>
         </div>
     </div>
+    <footer>
+        <div class="footer-contact">
+            <p class="contact-title">Contact Us:</p>
+
+            <p><a href="mailto:cs@leine.store" class="contact-link"><i class="fa-solid fa-envelope"></i>: cs@leine.store</a></p>
+
+            <p><a href="https://wa.me/" target="_blank" class="contact-link"><i class="fa-brands fa-whatsapp"></i>: 0812345</a></p>
+
+        </div>
+        <div class="footer-social">
+            <p class="social-title">Find Us:</p>
+            <div class="social-icons">
+                <a href="https://instagram.com" target="_blank" class="social-icon"><i
+                        class="fa-brands fa-instagram"></i></a>
+                <a href="https://tiktok.com" target="_blank" class="social-icon"><i class="fa-brands fa-tiktok"></i></a>
+            </div>
+        </div>
+        <div class="footer-text">
+            <p class="title-font">LEINÉ</p>
+            <p class="slogan-font" style="font-size: 1.4rem;">own your style</p>
+        </div>
+        <div class="footer-copyright">
+            <p>&copy;2025 LEINÉ. All rights reserved.</p>
+        </div>
+    </footer>
 
     <script src="script.js"></script>
 </body>

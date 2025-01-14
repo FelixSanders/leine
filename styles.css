@@ -15,7 +15,7 @@
 @font-face {
     font-family: 'Sloop';
     src: url('fonts/sloop_script_regular-webfont.woff2') format('woff2'),
-         url('fonts/sloop_script_regular-webfont.woff') format('woff');
+        url('fonts/sloop_script_regular-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 
@@ -33,6 +33,16 @@
     font-style: italic;
 }
 
+body {
+    background: #fff;
+
+    font-family: "Manrope", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+
 .title-font {
     font-family: "Arapey", serif;
     font-weight: 400;
@@ -40,7 +50,7 @@
 }
 
 .slogan-font {
-    font-family: "Sloop", Arial ,sans-serif;
+    font-family: "Sloop", Arial, sans-serif;
     font-weight: 400;
     font-style: normal;
 }
@@ -50,7 +60,7 @@ h2 {
     font-optical-sizing: auto;
     font-weight: 800;
     font-style: normal;
-    font-size: 1.3em;
+    font-size: 1.3rem;
     text-align: center;
     text-decoration: underline;
     margin: 5px;
@@ -63,14 +73,6 @@ h2 {
     font-style: normal;
     margin-top: 10px;
 }
-
-.text-font {
-    font-family: "Manrope", serif;
-    font-optical-sizing: auto;
-    font-weight: 400;
-    font-style: normal;  
-}
-
 
 header {
     background-color: #000;
@@ -96,7 +98,7 @@ header h1 {
 
 header p {
     margin: 5px;
-    font-size: 1.5em;
+    font-size: 1.5rem;
     pointer-events: none;
     user-select: none;
 }
@@ -133,7 +135,7 @@ header p {
     left: 50%;
     transform: translate(-50%, -50%);
     color: white;
-    font-size: 5em;
+    font-size: 5rem;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
     text-align: center;
 }
@@ -167,7 +169,7 @@ header p {
 
 .product-availability {
     color: red;
-    font-size: 1em;
+    font-size: 0.9rem;
     display: flex;
     align-items: center;
     gap: 5px;
@@ -175,13 +177,13 @@ header p {
 }
 
 .product-text {
-    font-size: 1.3em;
+    font-size: 1.3rem;
     margin: 10px 0;
     margin-bottom: 5px;
 }
 
 .product-price {
-    font-size: 1.5em;
+    font-size: 1.5rem;
     font-weight: bold;
     margin: 10px 0;
     color: #333;
@@ -189,7 +191,7 @@ header p {
 
 .purchase-button {
     padding: 10px 20px;
-    font-size: 1em;
+    font-size: 1rem;
     color: #fff;
     background-color: #000;
     border: 2px solid #000;
@@ -206,13 +208,13 @@ header p {
 
 /* Popup Overlay */
 .popup-overlay {
-    display: none; /* Hidden by default */
+    display: none;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    background: rgba(0, 0, 0, 0.5);
     z-index: 1000;
     justify-content: center;
     align-items: center;
@@ -236,7 +238,7 @@ header p {
     right: 10px;
     background: none;
     border: none;
-    font-size: 1.5em;
+    font-size: 1.5rem;
     font-weight: bold;
     color: #333;
     cursor: pointer;
@@ -248,7 +250,7 @@ header p {
 }
 
 .popup-text {
-    font-size: 1.2em;
+    font-size: 1.2rem;
     margin-bottom: 20px;
 }
 
@@ -257,7 +259,7 @@ header p {
     width: 100%;
     padding: 10px 0;
     margin: 10px 0;
-    font-size: 1em;
+    font-size: 1rem;
     text-decoration: none;
     text-align: center;
     color: rgb(0, 0, 0);
@@ -292,7 +294,7 @@ header p {
     filter: brightness(50%);
 }
 
-.upcoming-details{
+.upcoming-details {
     pointer-events: none;
     user-select: none;
 }
@@ -314,7 +316,7 @@ header p {
     left: 50%;
     transform: translateX(-50%);
     color: white;
-    font-size: 1.8em;
+    font-size: 1.8rem;
     font-weight: bold;
     z-index: 3;
     text-align: center;
@@ -325,18 +327,58 @@ header p {
 }
 
 .timer {
-    font-size: 0.7em;
+    font-size: 1.1rem;
 }
 
-/* Responsive Behavior */
-@media (min-width: 769px) {
-    .cards-container {
-        overflow-x: hidden;
-        justify-content: center;
-        white-space: normal;
+.about-us {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    gap: 20px;
+    margin: 50px;
+}
+
+.about-us .text {
+    flex: 1;
+    min-width: 300px;
+}
+
+.about-us .text h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.about-us .text p {
+    font-size: 1rem;
+    color: #555;
+}
+
+.about-us .image {
+    flex: 1;
+    min-width: 300px;
+    display: flex;
+    justify-content: center;
+}
+
+.about-us .image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .about-us {
+        flex-direction: column;
+        text-align: center;
     }
-    .card {
-        flex: 1;
+
+    .about-us .text,
+    .about-us .image {
+        flex: none;
+        width: 100%;
     }
 }
 
@@ -365,6 +407,78 @@ header p {
     }
 }
 
+
+footer {
+    left: 0;
+    position: relative;
+    border: 0;
+    font-size: 2rem;
+    padding: 20px;
+    padding-bottom: 5px;
+    border-radius: 15px;
+    background-color: #dadada;
+}
+
+.footer-contact, .footer-social {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.contact-title, .social-title {
+    font-size: 1rem;
+    font-weight: bold;
+    margin: 5px;
+}
+
+.footer-contact p {
+    margin: 0px;
+}
+
+.contact-link {
+    margin: 5px;
+    font-size: 1.2rem;
+    color: #3a3a3a;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.contact-link:hover {
+    color: #000000;
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+    font-size: 1.6rem;
+    color: #3a3a3a;
+    transition: color 0.3s ease;
+}
+
+.social-icon {
+    padding: 5px;
+    text-decoration: none;
+    color: inherit;
+}
+
+.social-icon:hover {
+    color: #000000;
+}
+
+.footer-text {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.footer-text p {
+    margin: 5px 0;
+    font-size: 1.8rem;
+}
+
+.footer-copyright {
+    text-align: center;
+    color: #3a3a3a;
+    font-size: 0.8rem;
+}
 
 .no-scroll {
     overflow: hidden;

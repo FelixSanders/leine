@@ -18,10 +18,10 @@ document.getElementById('next-month').textContent = monthNames[currentMonth + 1]
 
 function startCountdownToNextMonth(display) {
     const now = new Date();
-    const nextMonth = new Date(now.getFullYear(), now.getMonth() + 1, 1); // Start of the next month
-    const timeRemaining = nextMonth - now; // Time difference in milliseconds
+    const nextMonth = new Date(now.getFullYear(), now.getMonth() + 1, 1);
+    const timeRemaining = nextMonth - now;
 
-    let timer = Math.floor(timeRemaining / 1000); // Convert to seconds
+    let timer = Math.floor(timeRemaining / 1000);
 
     const interval = setInterval(() => {
         const days = Math.floor(timer / (24 * 3600));
@@ -29,7 +29,6 @@ function startCountdownToNextMonth(display) {
         const minutes = Math.floor((timer % 3600) / 60);
         const seconds = timer % 60;
 
-        // Format time as DD:HH:MM:SS
         display.textContent = `${days.toString().padStart(2, '0')}:${hours
             .toString()
             .padStart(2, '0')}:${minutes
@@ -112,4 +111,11 @@ document.getElementById("purchase-btn").addEventListener("click", function () {
 document.getElementById("close-btn").addEventListener("click", function () {
     document.getElementById("popup-modal").style.display = "none";
     document.body.classList.remove("no-scroll");
+});
+
+document.getElementById("popup-modal").addEventListener("click", function (e) {
+    if (e.target === document.getElementById("popup-modal")) {
+        document.getElementById("popup-modal").style.display = "none";
+        document.body.classList.remove("no-scroll");
+      }
 });
