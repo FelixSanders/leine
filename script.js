@@ -11,7 +11,7 @@ const currentDate = new Date();
 const currentMonth = currentDate.getMonth();
 
 // Display the current month
-document.getElementById('current-month').textContent = monthNames[currentMonth];
+
 
 document.getElementById('next-month').textContent = monthNames[currentMonth + 1];
 
@@ -92,6 +92,26 @@ function fetchSheetData() {
         .catch(error => console.error('Error fetching data from Google Sheets:', error));
 }
 
+const menuToggle = document.getElementById("menu-toggle");
+const menu = document.getElementById("menu");
+
+menuToggle.addEventListener("click", () => {
+    menu.classList.toggle("active");
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+    const overlayTitle = document.querySelector(".overlay-title");
+
+    const year = currentDate.getFullYear();
+
+    const monthText = `${monthNames[currentMonth]} '${year.toString().slice(-2)} Collection`;
+
+    overlayTitle.textContent = monthText.toUpperCase();
+    document.getElementById('current-month').textContent = monthText;
+});
+
+
+
 document.addEventListener("DOMContentLoaded", () => {
     const timerElement = document.getElementById("timer");
     startCountdownToNextMonth(timerElement);
@@ -117,5 +137,5 @@ document.getElementById("popup-modal").addEventListener("click", function (e) {
     if (e.target === document.getElementById("popup-modal")) {
         document.getElementById("popup-modal").style.display = "none";
         document.body.classList.remove("no-scroll");
-      }
+    }
 });

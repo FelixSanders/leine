@@ -55,69 +55,114 @@ body {
     font-style: normal;
 }
 
-h2 {
-    font-family: "Manrope", serif;
-    font-optical-sizing: auto;
-    font-weight: 800;
-    font-style: normal;
-    font-size: 1.3rem;
-    text-align: center;
-    text-decoration: underline;
-    margin: 5px;
-}
 
-.subhead-font {
-    font-family: "Manrope", serif;
-    font-optical-sizing: auto;
-    font-weight: 700;
-    font-style: normal;
-    margin-top: 10px;
-}
+
+
+/* HEADER STYLES */
 
 header {
-    background-color: #000;
-    color: #fff;
-    padding: 5px;
-    margin: 0;
-    text-align: center;
-    width: 100%;
-    position: fixed;
     top: 0;
     left: 0;
+    margin: 0;
+    position: fixed;
     z-index: 1000;
-    transition: transform 0.3s ease, background-color 0.5s ease-in;
+    width: 100%;
+    background: #fff;
+    color: #000;
+    padding: 5px 0;
+    align-items: center;
+    display: flex;
+    transition: transform 0.3s ease, background-color 0.3s ease-in;
 }
 
 header h1 {
-    margin: 5px;
+    margin: 10px;
+    margin-left: 1em;
     font-size: 2rem;
-    pointer-events: none;
     user-select: none;
+    cursor: pointer;
 }
 
+nav {
+    margin-left: auto;
+    margin-right: 1em;
+}
 
-header p {
-    margin: 5px;
+nav ul {
+    margin: 0px;
+    list-style: none;
+    padding: 0;
+    display: flex;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: #707070;
+    transition: color 0.3s ease-in;
+    text-decoration: none;
+}
+
+nav ul li a:hover {
+    color: #000000;
+}
+
+#menu-toggle {
+    display: none;
+    background: none;
+    border: none;
     font-size: 1.5rem;
-    pointer-events: none;
-    user-select: none;
+    cursor: pointer;
+    margin-left: auto;
+    margin-right: 1em;
 }
+
+@media (max-width: 550px) {
+    nav ul {
+        display: flex;
+        flex-direction: column;
+        background: #fff;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        width: 100%;
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transition: max-height 0.5s ease, opacity 0.5s ease;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    nav ul.active {
+        max-height: 300px;
+        opacity: 1;
+    }
+
+    nav ul li {
+        margin: 10px 0;
+        text-align: center;
+    }
+
+    #menu-toggle {
+        display: block;
+    }
+}
+
+
+/* BANNER STYLES */
 
 .banner-section {
-    margin-top: 50px;
-    margin-bottom: 50px;
-}
-
-.current-section {
-    margin-top: 75px;
-    margin-bottom: 75px;
+    margin: 50px 0;
+    position: relative;
 }
 
 .image-container {
     position: relative;
     width: 100%;
-    /*max-width: 600px;*/
-    margin: 50px auto;
+    margin: 0 auto;
 }
 
 .image-container img {
@@ -128,85 +173,209 @@ header p {
     object-fit: cover;
 }
 
-
-.text-overlay {
+.banner-overlay {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     color: white;
-    font-size: 5rem;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
     text-align: center;
+    width: 90%;
+    max-width: 600px;
+}
+
+.banner-overlay .overlay-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    margin-bottom: 10px;
+}
+
+.overlay-description {
+    font-size: 1.8rem;
+    font-weight: 300;
+    margin: auto;
+    margin-bottom: 25px;
+}
+
+.banner-overlay a {
+    padding: 10px 50px;
+    background-color: #fff;
+    color: #000;
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    display: inline-block;
+}
+
+.banner-overlay a:hover {
+    background-color: #000;
+    color: #fff;
+}
+
+@media (max-width: 768px) {
+    .banner-overlay .overlay-title {
+        font-size: 2.5rem;
+    }
+
+    .overlay-description {
+        font-size: 1.4rem;
+    }
+
+    .banner-overlay a {
+        padding: 10px 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .banner-overlay .overlay-title {
+        font-size: 2rem;
+    }
+
+    .overlay-description {
+        font-size: 1.2rem;
+    }
+
+    .banner-overlay a {
+        padding: 8px 20px;
+    }
 }
 
 
+/*h2 {
+    font-family: "Manrope", serif;
+    font-optical-sizing: auto;
+    font-weight: 800;
+    font-style: normal;
+    font-size: 1.3rem;
+    text-align: center;
+    text-decoration: underline;
+    margin: 5px;
+}*/
+
+/* CURRENT STYLES */
+
+.current-section {
+    margin-top: 75px;
+    margin-bottom: 75px;
+}
+
+.section-head {
+    padding: 0 15px;
+    text-align: left;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.section-head h2 {
+    font-size: 2rem;
+    text-decoration: underline;
+    margin: 0;
+}
+
+.section-head p {
+    font-size: 2rem;
+    margin: 5px 0 0 0;
+}
 
 .product-container {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+    max-width: 100%;
+    margin: 20px auto;
+    box-sizing: border-box;
+}
+
+.product-item {
+    background-color: #eee;
+    width: 300px;
+    text-align: center;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    padding: 20px;
-    max-width: 1200px;
-    margin: 20px auto;
-    border: 3px solid #000;
+    box-sizing: border-box;
 }
 
 .product-image {
-    max-width: 40%;
+    width: 100%;
     height: auto;
+    max-height: 600px;
+    object-fit: cover;
+    margin-bottom: 15px;
 }
 
 .product-details {
-    max-width: 55%;
-    text-align: left;
-    flex: 1;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    text-align: left;
-}
-
-.product-availability {
-    color: red;
-    font-size: 0.9rem;
-    display: flex;
     align-items: center;
-    gap: 5px;
-    margin-bottom: 5px;
+    justify-content: center;
 }
 
 .product-text {
-    font-size: 1.3rem;
-    margin: 10px 0;
-    margin-bottom: 5px;
+    font-size: 1.1rem;
+    margin: 5px;
 }
 
 .product-price {
     font-size: 1.5rem;
     font-weight: bold;
-    margin: 10px 0;
+    margin: 5px;
     color: #333;
 }
 
 .purchase-button {
+    margin-top: 10px;
     padding: 10px 20px;
     font-size: 1rem;
     color: #fff;
     background-color: #000;
     border: 2px solid #000;
-    border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease, color 0.3s ease;
+    border-radius: 5px;
 }
 
 .purchase-button:hover {
-    background-color: #fff;
-    color: #000000;
+    background-color: #ffffff00;
+    color: #000;
+    border: 2px solid #000;
+}
+
+@media (max-width: 768px) {
+    .section-head h2 {
+        font-size: 1.75rem;
+    }
+
+    .section-head p {
+        font-size: 1.5rem;
+    }
+    .product-item {
+        width: calc(50% - 20px);
+    }
+}
+
+@media (max-width: 480px) {
+    .section-head h2 {
+        font-size: 1.5rem;
+    }
+
+    .section-head p {
+        font-size: 1.2rem;
+    }
+    .product-item {
+        width: calc(100% - 20px);
+    }
 }
 
 
-/* Popup Overlay */
+/* POPUP STYLES */
+
 .popup-overlay {
     display: none;
     position: fixed;
@@ -220,18 +389,15 @@ header p {
     align-items: center;
 }
 
-/* Popup Content */
 .popup-content {
     background: white;
     padding: 20px;
-    border-radius: 8px;
     text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     width: 300px;
     position: relative;
 }
 
-/* Close Button */
 .close-btn {
     position: absolute;
     top: 10px;
@@ -265,7 +431,6 @@ header p {
     color: rgb(0, 0, 0);
     background-color: transparent;
     border: 2px solid #000;
-    border-radius: 5px;
     transition: background-color 0.3s ease;
 }
 
@@ -276,6 +441,7 @@ header p {
 .popup-button:hover {
     background-color: #000;
 }
+
 
 
 .upcoming-container {
@@ -419,12 +585,14 @@ footer {
     background-color: #dadada;
 }
 
-.footer-contact, .footer-social {
+.footer-contact,
+.footer-social {
     text-align: left;
     margin-bottom: 20px;
 }
 
-.contact-title, .social-title {
+.contact-title,
+.social-title {
     font-size: 1rem;
     font-weight: bold;
     margin: 5px;
