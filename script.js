@@ -14,12 +14,6 @@ const currentMonth = currentDate.getMonth();
 const currentYear = currentDate.getFullYear();
 
 
-// Display the current month
-
-
-document.getElementById('next-month').textContent = monthNames[currentMonth + 1];
-
-
 function startCountdownToNextMonth(display) {
     const now = new Date();
     const nextMonth = new Date(now.getFullYear(), now.getMonth() + 1, 1);
@@ -69,7 +63,6 @@ function fetchSheetData() {
         .then(data => {
             const rows = data.values;
             const currentRow = rows[currentMonth];
-            console.log('hi')
             for (let i = 0; i < itemAmount; i++) {
                 const productStartCol = i * 5;
                 const itemName = currentRow[productStartCol + 1];
@@ -122,6 +115,8 @@ function fetchSheetData() {
         .catch(error => console.error('Error fetching data from Google Sheets:', error));
 }
 
+fetchSheetData();
+
 const menuToggle = document.getElementById("menu-toggle");
 const menu = document.getElementById("menu");
 
@@ -138,14 +133,95 @@ document.addEventListener("DOMContentLoaded", () => {
 
     overlayTitle.textContent = monthText.toUpperCase();
     document.getElementById('current-month').textContent = monthText;
+
+    const nextMonthText = `${monthNames[currentMonth + 1]} '${year.toString().slice(-2)} Collection`
+
+    document.getElementById('next-month').textContent = nextMonthText;
 });
 
+function fetchReviews() {
+    const url = `https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/Reviews!A2:D?key=${API_KEY}`;
 
-document.addEventListener("DOMContentLoaded", () => {
-    const timerElement = document.getElementById("next-timer");
-    startCountdownToNextMonth(timerElement);
-    fetchSheetData();
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            const rows = data.values;
+
+            if (!rows || rows.length === 0) {
+                console.error('No data found in the sheet.');
+                return;
+            }
+
+            const reviewsContainer = document.getElementById('reviews-container');
+
+            rows.forEach((row, index) => {
+
+                const [author, rating, review, approval] = row;
+
+                if (approval && approval.toLowerCase() === 'true') {
+                    const reviewCard = document.createElement('div');
+                    reviewCard.classList.add('review-card');
+
+                    const authorElem = document.createElement('p');
+                    authorElem.classList.add('author');
+                    authorElem.textContent = author;
+
+                    const ratingElem = document.createElement('p');
+                    ratingElem.classList.add('rating');
+                    ratingElem.innerHTML = '<span class="gold-star">'+'<i class="fa-solid fa-star"></i> '.repeat(parseInt(rating))+"</span>"+'<i class="fa-solid fa-star"></i> '.repeat(parseInt(5-rating));
+
+                    const reviewElem = document.createElement('p');
+                    reviewElem.classList.add('review');
+                    reviewElem.textContent = review;
+
+                    reviewCard.appendChild(authorElem);
+                    reviewCard.appendChild(ratingElem);
+                    reviewCard.appendChild(reviewElem);
+
+                    reviewsContainer.appendChild(reviewCard);
+                }
+            });
+
+            // After adding cards, update scroll buttons' visibility
+            updateScrollButtons();
+        })
+        .catch(error => console.error('Error fetching data from Google Sheets:', error));
+}
+
+const reviewsContainer = document.querySelector('.reviews-container');
+const leftBtn = document.querySelector('.scroll-btn.left');
+const rightBtn = document.querySelector('.scroll-btn.right');
+
+
+const scrollAmount = 300;
+
+function updateScrollButtons() {
+    if (reviewsContainer.scrollLeft <= 0) {
+        leftBtn.style.display = 'none';
+    } else {
+        leftBtn.style.display = 'block';
+    }
+
+    if (reviewsContainer.scrollLeft >= reviewsContainer.scrollWidth - reviewsContainer.clientWidth) {
+        rightBtn.style.display = 'none';
+    } else {
+        rightBtn.style.display = 'block';
+    }
+}
+
+rightBtn.addEventListener('click', () => {
+    reviewsContainer.scrollBy({ left: scrollAmount, behavior: 'smooth' });
 });
+
+leftBtn.addEventListener('click', () => {
+    reviewsContainer.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+});
+
+reviewsContainer.addEventListener('scroll', updateScrollButtons);
+
+
+fetchReviews();
+updateScrollButtons();
 
 
 document.getElementById("close-btn").addEventListener("click", function () {

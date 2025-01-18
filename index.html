@@ -20,7 +20,7 @@
 <body>
     <header>
         <h1 id="header-text" class="title-font">LEINÉ</h1>
-        
+
         <nav>
             <ul id="menu">
                 <li><a href="#">ABOUT</a></li>
@@ -31,7 +31,7 @@
 
         <button id="menu-toggle" aria-label="Toggle navigation">☰</button>
     </header>
-    
+
 
     <div class="banner-section">
         <div class="image-container">
@@ -51,45 +51,36 @@
             <p id="current-month" class="subhead-font"></p>
         </div>
         <div class="product-container" id="product-container">
-            
+
         </div>
     </div>
 
     <div class="description-section">
         <div class="description-text">
             <h2>OWN YOUR STYLE.</h2>
-            <p>"Own Your Style", is a bold and empowering slogan. It encourages confidence and freedom in expressing individuality through personal style. We inspire people to take charge of how they present themselves to the world.</p>
+            <p>"Own Your Style", is a bold and empowering slogan. It encourages confidence and freedom in expressing
+                individuality through personal style. We inspire people to take charge of how they present themselves to
+                the world.</p>
         </div>
         <img src="images/banner/1.png" class="description-image">
     </div>
 
     <div class="reviews-section">
         <h2>HOW OTHERS SEE US.</h2>
-        <div class="reviews-container">
+        <div class="reviews-wrapper">
+            <button class="scroll-btn left" id="scroll-left">&lt;</button>
+            <div class="reviews-container" id="reviews-container">
+            </div>
+            <button class="scroll-btn right" id="scroll-right">&gt;</button>
         </div>
     </div>
 
-    <section class="upcoming-section">
-        <div>
-            <h2 class="head-font">UPCOMING</h2>
-            <p id="current-month" class="subhead-font" style="text-align: center; font-size: 2em;"></p>
+    <div class="upcoming-section">
+        <div class="upcoming-text">
+            <h2>UPCOMING</h2>
+            <p id="next-month">LEINÉ Collection</p>
         </div>
-        <div class="product-container upcoming-container">
-            <img id="upcoming-image" src="images/item/Placeholder.png" alt="Product Image" class="product-image">
-            <div class="product-details upcoming-details">
-                <p class="text-font product-text">???</p>
-                <p class="text-font product-price">Rp???</p>
-                <button class="purchase-button text-font"><i class="fa-solid fa-cart-shopping"></i> Purchase</button>
-            </div>
-            <div class="overlay-text">
-                <p class="text-font">Coming soon</p>
-                <p id="next-month" class="subhead-font next-month" style="text-align: center; font-size: 2em;"></p>
-                <p class="text-font timer">
-                    <i class="fa-regular fa-clock"></i> <b><span id="next-timer"></span></b>
-                </p>
-            </div>
-        </div>
-    </section>
+    </div>
 
     <div id="popup-modal" class="popup-overlay">
         <div class="popup-content">
@@ -102,25 +93,24 @@
         </div>
     </div>
     <footer>
-        <div class="footer-contact">
-            <p class="contact-title">Contact Us:</p>
-
-            <p><a href="mailto:cs@leine.store" class="contact-link"><i class="fa-solid fa-envelope"></i>: cs@leine.store</a></p>
-
-            <p><a href="https://wa.me/" target="_blank" class="contact-link"><i class="fa-brands fa-whatsapp"></i>: 0812345</a></p>
-
-        </div>
-        <div class="footer-social">
-            <p class="social-title">Find Us:</p>
-            <div class="social-icons">
-                <a href="https://instagram.com" target="_blank" class="social-icon"><i
-                        class="fa-brands fa-instagram"></i></a>
-                <a href="https://tiktok.com" target="_blank" class="social-icon"><i class="fa-brands fa-tiktok"></i></a>
+        <h2 class="title-font">LEINÉ</h2>
+        <div class="footer-links">
+            <div class="nav-links">
+                <p class="nav-title">OUR STORE</p>
+                <p><a href="#" class="link-item">About</a></p>
+                <p><a href="#" class="link-item">Size Guide</a></p>
+                <p><a href="#" class="link-item">Contact</a></p>
+            </div>
+            <div class="social-links">
+                <p class="social-title">STAY CONNECTED</p>
+                <p><a href="https://instagram.com" target="_blank" class="link-item">Instagram</a></p>
+                <p><a href="https://tiktok.com" target="_blank" class="link-item">TikTok</a></p>
             </div>
         </div>
-        <div class="footer-text">
-            <p class="title-font">LEINÉ</p>
-            <p class="slogan-font" style="font-size: 1.4rem;">own your style</p>
+        <div class="contact-links">
+            <p class="contact-title">NEED ASSISTANCE?</p>
+
+            <p><a href="mailto:cs@leine.store" class="link-item">help@leine.store</a></p>
         </div>
         <div class="footer-copyright">
             <p>&copy;2025 LEINÉ. All rights reserved.</p>
