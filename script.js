@@ -1,6 +1,8 @@
 const SPREADSHEET_ID = '1fs9p0wUwJxyDwiLaSJ9ZH9K9FZS1tjAV_1hrX_mzuic'; // Google Sheet ID
 const API_KEY = 'AIzaSyB9X6vArhzlQtB8eLtd3fRJmf4tyA_OkCo';
-const RANGE = 'Sheet1!A2:F';
+const RANGE = 'A3:K';
+const itemAmount = 2;
+
 
 const monthNames = [
     "January", "February", "March", "April", "May", "June",
@@ -9,6 +11,8 @@ const monthNames = [
 
 const currentDate = new Date();
 const currentMonth = currentDate.getMonth();
+const currentYear = currentDate.getFullYear();
+
 
 // Display the current month
 
@@ -57,36 +61,62 @@ function convertToDriveImageUrl(driveLink) {
     }
 }
 
-// Update the product info section after fetching data from the sheet
 function fetchSheetData() {
-    const url = `https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/${RANGE}?key=${API_KEY}`;
+    const url = `https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/${currentYear}!${RANGE}?key=${API_KEY}`;
 
     fetch(url)
         .then(response => response.json())
         .then(data => {
             const rows = data.values;
-            const currentMonthData = rows[currentMonth];
+            const currentRow = rows[currentMonth];
+            console.log('hi')
+            for (let i = 0; i < itemAmount; i++) {
+                const productStartCol = i * 5;
+                const itemName = currentRow[productStartCol + 1];
+                const price = currentRow[productStartCol + 2];
+                const tokopediaLink = currentRow[productStartCol + 3];
+                const shopeeLink = currentRow[productStartCol + 4];
+                const imageLink = convertToDriveImageUrl(currentRow[productStartCol + 5]);
 
-            if (currentMonthData) {
-                const itemName = currentMonthData[1];
-                const price = currentMonthData[2];
-                const tokopediaLink = currentMonthData[3];
-                const shopeeLink = currentMonthData[4];
-                const imageLink = convertToDriveImageUrl(currentMonthData[5]);
-                const upcomingImageLink = convertToDriveImageUrl(rows[currentMonth + 1][5]);
+                const productContainer = document.getElementById('product-container');
 
-                // Update the DOM
-                document.getElementById('product-name').textContent = itemName;
-                document.getElementById('product-price').textContent = price;
-                document.getElementById('tokopedia-link').href = tokopediaLink;
-                document.getElementById('shopee-link').href = shopeeLink;
-                document.getElementById('product-image').src = imageLink;
+                const productItem = document.createElement('div');
+                productItem.classList.add('product-item');
 
-                document.getElementById('upcoming-image').src = upcomingImageLink;
+                const productImage = document.createElement('img');
+                productImage.src = imageLink;
+                productImage.alt = 'Product Image';
+                productImage.classList.add('product-image');
+                productItem.appendChild(productImage);
 
-                if (upcomingImageLink != 'images/item/Placeholder.png') {
-                    document.getElementById('upcoming-image').classList.add('darkened');
-                }
+                const productDetails = document.createElement('div');
+                productDetails.classList.add('product-details');
+
+                const productName = document.createElement('p');
+                productName.classList.add('product-text');
+                productName.textContent = itemName;
+                productDetails.appendChild(productName);
+
+                const productPrice = document.createElement('p');
+                productPrice.classList.add('product-price');
+                productPrice.textContent = price;
+                productDetails.appendChild(productPrice);
+
+                const purchaseButton = document.createElement('button');
+                purchaseButton.classList.add('purchase-button');
+                purchaseButton.innerHTML = '<i class="fa-solid fa-cart-shopping"></i> BUY';
+                productDetails.appendChild(purchaseButton);
+
+                productItem.appendChild(productDetails);
+                productContainer.appendChild(productItem);
+
+                purchaseButton.addEventListener("click", function () {
+                    document.getElementById("popup-modal").style.display = "flex";
+                    document.body.classList.add("no-scroll");
+                    
+                    document.getElementById('tokopedia-link').href = tokopediaLink;
+                    document.getElementById('shopee-link').href = shopeeLink;
+                });
             }
         })
         .catch(error => console.error('Error fetching data from Google Sheets:', error));
@@ -111,22 +141,12 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-
 document.addEventListener("DOMContentLoaded", () => {
-    const timerElement = document.getElementById("timer");
+    const timerElement = document.getElementById("next-timer");
     startCountdownToNextMonth(timerElement);
     fetchSheetData();
 });
 
-document.addEventListener("DOMContentLoaded", () => {
-    const timerElement = document.getElementById("next-timer");
-    startCountdownToNextMonth(timerElement);
-});
-
-document.getElementById("purchase-btn").addEventListener("click", function () {
-    document.getElementById("popup-modal").style.display = "flex";
-    document.body.classList.add("no-scroll");
-});
 
 document.getElementById("close-btn").addEventListener("click", function () {
     document.getElementById("popup-modal").style.display = "none";
