@@ -44,7 +44,7 @@ body {
     padding: 0;
     box-sizing: border-box;
 
-    font-family: "Manrope", serif;
+    font-family: "Montserrat", serif;
     font-optical-sizing: auto;
     font-weight: 400;
     font-style: normal;
@@ -55,15 +55,9 @@ body {
     font-family: "Arapey", serif;
     font-weight: 400;
     font-style: normal;
+    text-decoration: none;
+    color: #000;
 }
-
-.slogan-font {
-    font-family: "Sloop", Arial, sans-serif;
-    font-weight: 400;
-    font-style: normal;
-}
-
-
 
 
 /* HEADER STYLES */
@@ -194,15 +188,14 @@ nav ul li a:hover {
 }
 
 .banner-overlay .overlay-title {
-    font-size: 3.5rem;
-    font-weight: 800;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    font-size: 5rem;
+    font-weight: 700;
     margin-bottom: 10px;
 }
 
 .overlay-description {
     font-size: 1.8rem;
-    font-weight: 300;
+    font-weight: 400;
     margin: auto;
     margin-bottom: 25px;
 }
@@ -223,7 +216,7 @@ nav ul li a:hover {
 
 @media (max-width: 768px) {
     .banner-overlay .overlay-title {
-        font-size: 2.5rem;
+        font-size: 3rem;
     }
 
     .overlay-description {
@@ -237,7 +230,7 @@ nav ul li a:hover {
 
 @media (max-width: 480px) {
     .banner-overlay .overlay-title {
-        font-size: 2rem;
+        font-size: 2.5rem;
     }
 
     .overlay-description {
@@ -279,7 +272,6 @@ nav ul li a:hover {
 
 .product-container {
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
     padding: 20px;
@@ -289,11 +281,9 @@ nav ul li a:hover {
 }
 
 .product-item {
-    background-color: #eee;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
     width: 300px;
     text-align: center;
-    padding: 20px;
+    padding: 15px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -301,12 +291,20 @@ nav ul li a:hover {
     box-sizing: border-box;
 }
 
+.product-image-container {
+    width: 100%;
+    height: auto;
+    margin-bottom: 15px;
+    background-color: #eee;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    padding: 5px;
+}
+
 .product-image {
     width: 100%;
     height: auto;
     max-height: 600px;
     object-fit: cover;
-    margin-bottom: 15px;
 }
 
 .product-details {
@@ -323,7 +321,7 @@ nav ul li a:hover {
 
 .product-price {
     font-size: 1.5rem;
-    font-weight: bold;
+    font-weight: 600;
     margin: 5px;
     color: #333;
 }
@@ -353,37 +351,47 @@ nav ul li a:hover {
     .section-head p {
         font-size: 1.5rem;
     }
-    .product-item {
-        width: calc(50% - 20px);
-    }
 
-    .product-container {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
 
-    .product-image {
+    .product-image-container {
         max-width: 90%;
-        margin-bottom: 20px;
+        margin-bottom: 5px;
     }
 
     .product-details {
         max-width: 90%;
+    }
+
+    .product-text {
+        font-size: 0.9rem;
+        margin: 3px;
+    }
+    
+    .product-price {
+        font-size: 1.1rem;
+        margin: 3px;
+    }
+
+    .purchase-button {
+        margin-top: 5px;
+        font-size: 0.9rem;
     }
 }
 
 @media (max-width: 550px) {
     .section-head h2 {
         font-size: 1.5rem;
-    }
+    }  
 
     .section-head p {
         font-size: 1.2rem;
     }
+
     .product-item {
-        width: calc(100% - 20px);
+        width: 400px;
+        padding: 5px;
     }
+
 }
 
 /* DESCRIPTION STYLES */
@@ -409,9 +417,9 @@ nav ul li a:hover {
 
 .description-text h2 {
     font-weight: 800;
-    font-size: 3rem;
-    max-width: 200px;
-    line-height: 3.1rem;
+    font-size: 4rem;
+    max-width: 300px;
+    line-height: 4.1rem;
     margin-bottom: 5px;
 }
 
@@ -483,26 +491,10 @@ nav ul li a:hover {
     white-space: normal;
 }
 
-.author {
-    font-size: 1.3rem;
-    font-weight: 700;
-    margin: 0;
-}
-
-.rating {
-    font-size: 1rem;
-    color: #888888;
-    margin: 0;
-}
-
-.gold-star {
-    color: #ffde25;
-}
-
 .review {
-    font-size: 0.9rem;
+    font-size: 1rem;
+    font-weight: 500;
     margin: 0;
-    margin-top: 10px;
 }
 
 .scroll-btn {
@@ -529,6 +521,45 @@ nav ul li a:hover {
 
 .scroll-btn.right {
     right: 10px;
+}
+
+.form-section {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+}
+
+.form-section h2 {
+    font-size: 1.2rem;
+}
+
+textarea, .submit-btn {
+    width: 100%;
+    margin-top: 5px;
+    padding: 10px;
+    font-family: 'Montserrat', serif;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+textarea {
+    resize: none;
+}
+
+.submit-btn {
+    background-color: #000;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.submit-btn:hover {
+    background-color: transparent;
+    border: 2px solid #000;
+    color: #000;
 }
 
 
@@ -560,6 +591,7 @@ nav ul li a:hover {
 .upcoming-text p {
     font-size: 2rem;
     margin-top: 5px;
+    color: #fff;
 }
 
 @media (min-width: 600px) and (max-width: 1024px) {

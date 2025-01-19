@@ -76,11 +76,15 @@ function fetchSheetData() {
                 const productItem = document.createElement('div');
                 productItem.classList.add('product-item');
 
+                const productImageContainer = document.createElement('div');
+                productImageContainer.classList.add('product-image-container')
+
+
                 const productImage = document.createElement('img');
                 productImage.src = imageLink;
                 productImage.alt = 'Product Image';
                 productImage.classList.add('product-image');
-                productItem.appendChild(productImage);
+                productImageContainer.appendChild(productImage);
 
                 const productDetails = document.createElement('div');
                 productDetails.classList.add('product-details');
@@ -100,6 +104,7 @@ function fetchSheetData() {
                 purchaseButton.innerHTML = '<i class="fa-solid fa-cart-shopping"></i> BUY';
                 productDetails.appendChild(purchaseButton);
 
+                productItem.appendChild(productImageContainer);
                 productItem.appendChild(productDetails);
                 productContainer.appendChild(productItem);
 
@@ -140,7 +145,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function fetchReviews() {
-    const url = `https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/Reviews!A2:D?key=${API_KEY}`;
+    const url = `https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/Reviews!A2:B?key=${API_KEY}`;
 
     fetch(url)
         .then(response => response.json())
@@ -156,37 +161,60 @@ function fetchReviews() {
 
             rows.forEach((row, index) => {
 
-                const [author, rating, review, approval] = row;
+                const [review, approval] = row;
 
                 if (approval && approval.toLowerCase() === 'true') {
                     const reviewCard = document.createElement('div');
                     reviewCard.classList.add('review-card');
 
-                    const authorElem = document.createElement('p');
-                    authorElem.classList.add('author');
-                    authorElem.textContent = author;
-
-                    const ratingElem = document.createElement('p');
-                    ratingElem.classList.add('rating');
-                    ratingElem.innerHTML = '<span class="gold-star">'+'<i class="fa-solid fa-star"></i> '.repeat(parseInt(rating))+"</span>"+'<i class="fa-solid fa-star"></i> '.repeat(parseInt(5-rating));
-
                     const reviewElem = document.createElement('p');
                     reviewElem.classList.add('review');
                     reviewElem.textContent = review;
 
-                    reviewCard.appendChild(authorElem);
-                    reviewCard.appendChild(ratingElem);
                     reviewCard.appendChild(reviewElem);
 
                     reviewsContainer.appendChild(reviewCard);
                 }
             });
 
-            // After adding cards, update scroll buttons' visibility
             updateScrollButtons();
         })
         .catch(error => console.error('Error fetching data from Google Sheets:', error));
 }
+
+document.getElementById("submit-btn").addEventListener("click", function() {
+    const reviewText = document.getElementById('review').value;
+    
+    if (reviewText.length <= 100) {
+        const data = { review: reviewText };
+
+        fetch('https://script.google.com/macros/s/AKfycbyLMev-N96eOJoj__rF-mITLefkzog6kyqF6alBY7eOe5GBZsGArKQwCr_jpHCN5v9l/exec', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(result => {
+            if (result.result === 'success') {
+                alert("Review submitted successfully!");
+            } else {
+                alert(result.message || "An error occurred.");
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert("Failed to submit review.");
+        });
+    } else {
+        alert("Review must be under 100 characters.");
+    }
+});
+
+
+
+
 
 const reviewsContainer = document.querySelector('.reviews-container');
 const leftBtn = document.querySelector('.scroll-btn.left');
