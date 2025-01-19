@@ -145,7 +145,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function fetchReviews() {
-    const url = `https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/Reviews!A2:B?key=${API_KEY}`;
+    const url = `https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/Reviews!B2:C?key=${API_KEY}`;
 
     fetch(url)
         .then(response => response.json())
@@ -182,34 +182,30 @@ function fetchReviews() {
         .catch(error => console.error('Error fetching data from Google Sheets:', error));
 }
 
-document.getElementById("submit-btn").addEventListener("click", function() {
-    const reviewText = document.getElementById('review').value;
-    
-    if (reviewText.length <= 100) {
-        const data = { review: reviewText };
+const form = document.getElementById('review-form');
 
-        fetch('https://script.google.com/macros/s/AKfycbyLMev-N96eOJoj__rF-mITLefkzog6kyqF6alBY7eOe5GBZsGArKQwCr_jpHCN5v9l/exec', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data)
-        })
-        .then(response => response.json())
-        .then(result => {
-            if (result.result === 'success') {
-                alert("Review submitted successfully!");
-            } else {
-                alert(result.message || "An error occurred.");
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert("Failed to submit review.");
-        });
-    } else {
-        alert("Review must be under 100 characters.");
-    }
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  const reviewText = document.getElementById('review-text').value;
+
+  const googleFormURL = "https://docs.google.com/forms/d/e/1FAIpQLSeAwa8b85UBFSmVAsnhSoFwAq8ddv_MjvcX29ejcCw0ArP_Gg/formResponse";
+
+  const formData = new URLSearchParams();
+  formData.append("entry.1843220470", reviewText);
+
+  fetch(googleFormURL, {
+    method: "POST",
+    body: formData,
+    mode: "no-cors",
+  })
+    .then(() => {
+      alert("Review submitted successfully!");
+      form.reset();
+    })
+    .catch((error) => {
+      console.error("Error submitting the form:", error);
+    });
 });
 
 
