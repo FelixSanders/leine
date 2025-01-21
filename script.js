@@ -1,6 +1,6 @@
 const SPREADSHEET_ID = '1fs9p0wUwJxyDwiLaSJ9ZH9K9FZS1tjAV_1hrX_mzuic'; // Google Sheet ID
 const API_KEY = 'AIzaSyB9X6vArhzlQtB8eLtd3fRJmf4tyA_OkCo';
-const RANGE = 'A3:K';
+
 const itemAmount = 2;
 
 
@@ -56,13 +56,17 @@ function convertToDriveImageUrl(driveLink) {
 }
 
 function fetchSheetData() {
-    const url = `https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/${currentYear}!${RANGE}?key=${API_KEY}`;
+    const url = `https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/${currentYear}!A3:K?key=${API_KEY}`;
 
     fetch(url)
         .then(response => response.json())
         .then(data => {
             const rows = data.values;
             const currentRow = rows[currentMonth];
+
+            const discountPercent = parseInt(rows[16][1].replace('%', ''), 10);
+            const discountActive = rows[16][2];
+            console.log(discountPercent);
             for (let i = 0; i < itemAmount; i++) {
                 const productStartCol = i * 5;
                 const itemName = currentRow[productStartCol + 1];
@@ -70,6 +74,8 @@ function fetchSheetData() {
                 const tokopediaLink = currentRow[productStartCol + 3];
                 const shopeeLink = currentRow[productStartCol + 4];
                 const imageLink = convertToDriveImageUrl(currentRow[productStartCol + 5]);
+
+                const priceInt = parseInt(price.replace(/[Rp,]/g, ''), 10);
 
                 const productContainer = document.getElementById('product-container');
 
@@ -94,10 +100,22 @@ function fetchSheetData() {
                 productName.textContent = itemName;
                 productDetails.appendChild(productName);
 
-                const productPrice = document.createElement('p');
-                productPrice.classList.add('product-price');
-                productPrice.textContent = price;
-                productDetails.appendChild(productPrice);
+                if (discountActive.toLowerCase() === 'true') {
+                    const productOldPrice = document.createElement('p');
+                    productOldPrice.classList.add('product-old-price');
+                    productOldPrice.textContent = "Rp" + priceInt.toLocaleString('id-ID');;
+                    productDetails.appendChild(productOldPrice);
+
+                    const productPrice = document.createElement('p');
+                    productPrice.classList.add('product-price');
+                    productPrice.textContent = "Rp" + (priceInt - priceInt * discountPercent/100).toLocaleString('id-ID');
+                    productDetails.appendChild(productPrice);
+                } else {
+                    const productPrice = document.createElement('p');
+                    productPrice.classList.add('product-price');
+                    productPrice.textContent = "Rp" + priceInt.toLocaleString('id-ID');
+                    productDetails.appendChild(productPrice);
+                }
 
                 const purchaseButton = document.createElement('button');
                 purchaseButton.classList.add('purchase-button');
@@ -111,7 +129,7 @@ function fetchSheetData() {
                 purchaseButton.addEventListener("click", function () {
                     document.getElementById("popup-modal").style.display = "flex";
                     document.body.classList.add("no-scroll");
-                    
+
                     document.getElementById('tokopedia-link').href = tokopediaLink;
                     document.getElementById('shopee-link').href = shopeeLink;
                 });
@@ -185,27 +203,27 @@ function fetchReviews() {
 const form = document.getElementById('review-form');
 
 form.addEventListener('submit', (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  const reviewText = document.getElementById('review-text').value;
+    const reviewText = document.getElementById('review-text').value;
 
-  const googleFormURL = "https://docs.google.com/forms/d/e/1FAIpQLSeAwa8b85UBFSmVAsnhSoFwAq8ddv_MjvcX29ejcCw0ArP_Gg/formResponse";
+    const googleFormURL = "https://docs.google.com/forms/d/e/1FAIpQLSeAwa8b85UBFSmVAsnhSoFwAq8ddv_MjvcX29ejcCw0ArP_Gg/formResponse";
 
-  const formData = new URLSearchParams();
-  formData.append("entry.1843220470", reviewText);
+    const formData = new URLSearchParams();
+    formData.append("entry.1843220470", reviewText);
 
-  fetch(googleFormURL, {
-    method: "POST",
-    body: formData,
-    mode: "no-cors",
-  })
-    .then(() => {
-      alert("Review submitted successfully!");
-      form.reset();
+    fetch(googleFormURL, {
+        method: "POST",
+        body: formData,
+        mode: "no-cors",
     })
-    .catch((error) => {
-      console.error("Error submitting the form:", error);
-    });
+        .then(() => {
+            alert("Review submitted successfully!");
+            form.reset();
+        })
+        .catch((error) => {
+            console.error("Error submitting the form:", error);
+        });
 });
 
 
