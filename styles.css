@@ -21,18 +21,6 @@
 
 }
 
-.arapey-regular {
-    font-family: "Arapey", serif;
-    font-weight: 400;
-    font-style: normal;
-}
-
-.arapey-regular-italic {
-    font-family: "Arapey", serif;
-    font-weight: 400;
-    font-style: italic;
-}
-
 html {
     scroll-behavior: smooth;
 }
@@ -181,7 +169,7 @@ nav ul li a:hover {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    color: white;
+    color: #fff;
     text-align: center;
     width: 90%;
     max-width: 600px;
