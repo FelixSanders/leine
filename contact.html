@@ -15,6 +15,7 @@
         rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="contact.css">
     <title>LEINÉ - Contact</title>
 </head>
 
@@ -33,7 +34,38 @@
         <button id="menu-toggle" aria-label="Toggle navigation">☰</button>
     </header>
 
-    
+    <div class="contact-banner">
+        <h1>CONTACT US</h1>
+        <p>We are here to listen and solve your problem</p>
+    </div>
+
+    <div class="contact-section">
+        <div class="contact-card">
+            <h2>Send us a message</h2>
+            <div class="button-container">
+                <button onclick="showContactPage('Email')"><i class="fa-regular fa-envelope"></i> Email</button>
+                <button onclick="showContactPage('Whatsapp')"><i class="fa-brands fa-whatsapp"></i> WhatsApp</button>
+            </div>
+            <div class="contact-container">
+                <div id="Email" class="contact-page">
+                    <form action="https://api.web3forms.com/submit" method="POST">
+                        <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
+                        <input type="email" placeholder="Email" required>
+                        <input type="text" placeholder="Name" required>
+                        <textarea placeholder="Message" rows="5" required></textarea>
+                        <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+                        <button type="submit">Submit</button>
+                    </form>
+                </div>
+                <div id="Whatsapp" class="contact-page">
+                    <a href="https://wa.me/" target="_blank">Chat on WhatsApp <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
     <footer>
         <h2 class="title-font">LEINÉ</h2>
         <div class="footer-links">
@@ -61,6 +93,7 @@
     </footer>
 
     <script src="script.js"></script>
+    <script src="contact.js"></script>
 </body>
 
 </html>
