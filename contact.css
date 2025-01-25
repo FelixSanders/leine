@@ -21,6 +21,7 @@
     justify-content: center;
     align-items: center;
     margin: 100px 0;
+    padding: 10px;
 }
 
 .contact-card {
@@ -51,7 +52,7 @@
     border: 2px solid #000000;
     padding: 10px 15px;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 0.9rem;
     display: flex;
     align-items: center;
     gap: 5px;
@@ -105,7 +106,7 @@ form button {
     color: #fff;
     border: 2px solid #000000;
     padding: 10px;
-    border-radius: 5px;
+    border-radius: 10px;
     cursor: pointer;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
@@ -126,9 +127,16 @@ form button:hover {
     cursor: pointer;
     font-size: 1.2rem;
     transition: background-color 0.3s ease, color 0.3s ease;
+    border-radius: 10px;
 }
 
 .contact-page a:hover {
     color: #000;
     background: #ffffff00;
+}
+
+@media (max-width: 600px) {
+    .contact-card {
+        width: 100%;
+    }
 }
