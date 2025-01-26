@@ -1,3 +1,16 @@
+.section-image {
+    width: 100%;
+    height: auto;
+    margin: 20px 0;
+    text-align: center;
+}
+
+.section-image img {
+    width: 100%;
+    height: auto;
+    max-width: 300px;
+}
+
 /* SLOGAN STYLES */
 
 .slogan-section {
@@ -46,35 +59,46 @@
 }
 
 @media (max-width: 768px) {
+
+
     .slogan-text .slogan-title {
-        font-size: 2.7rem;
+        font-size: 3rem;
+        width: 99%;
     }
 
     .slogan-description {
-        font-size: 1.2rem;
+        font-size: 0.9rem;
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 510px) {
     .slogan-text .slogan-title {
-        font-size: 1.8rem;
+        font-size: 2.5rem;
+    }
+
+}
+
+@media (max-width: 440px) {
+    .slogan-text .slogan-title {
+        font-size: 2.1rem;
     }
 
     .slogan-description {
-        font-size: 1rem;
+        font-size: 0.8rem;
     }
 }
-
 
 /* BACKGROUND STYLES */
 
 .background-section {
     padding: 50px;
+    background-color: #000;
+    color: #fff;
 }
 
 .background-section h2 {
     text-align: left;
-    font-size: 2.5rem;
+    font-size: 2.3rem;
     font-weight: bold;
     margin-bottom: 20px;
 }
@@ -88,7 +112,7 @@
 .background-paragraphs p {
     flex: 1;
     min-width: 250px;
-    font-size: 1.1rem;
+    font-size: 1rem;
     line-height: 1.5;
 }
 
@@ -106,11 +130,16 @@
 /* REASON STYLES */
 
 .reason-section {
+    margin: 10px 0;
+    margin-top: 0;   
+    background-color: #eee;
+}
+
+.reason-container {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 30px;
-    margin: 10px 0;
     padding: 50px;
 }
 
@@ -128,7 +157,7 @@
     font-size: 1.1rem;
 }
 
-.reason-section img {
+.reason-container img {
     flex: 1;
     max-width: 300px;
     width: 100%;
@@ -137,12 +166,12 @@
 }
 
 @media (max-width: 965px) {
-    .reason-section {
+    .reason-container {
         flex-direction: column;
         align-items: center;
     }
 
-    .reason-section img {
+    .reason-container img {
         max-width: 80%;
     }
 }
@@ -204,5 +233,9 @@
     .unique-container {
         flex-direction: column;
         gap: 15px;
+    }
+
+    .unique-list {
+        flex-direction: row;
     }
 }
