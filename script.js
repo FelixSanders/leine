@@ -103,17 +103,17 @@ function fetchSheetData() {
                 if (discountActive.toLowerCase() === 'true') {
                     const productOldPrice = document.createElement('p');
                     productOldPrice.classList.add('product-old-price');
-                    productOldPrice.textContent = "Rp" + priceInt.toLocaleString('id-ID');;
+                    productOldPrice.textContent = "Rp" + priceInt.toLocaleString('id-ID') + ",00";
                     productDetails.appendChild(productOldPrice);
 
                     const productPrice = document.createElement('p');
                     productPrice.classList.add('product-price');
-                    productPrice.textContent = "Rp" + (priceInt - priceInt * discountPercent/100).toLocaleString('id-ID');
+                    productPrice.textContent = "Rp" + (priceInt - priceInt * discountPercent/100).toLocaleString('id-ID') + ",00";
                     productDetails.appendChild(productPrice);
                 } else {
                     const productPrice = document.createElement('p');
                     productPrice.classList.add('product-price');
-                    productPrice.textContent = "Rp" + priceInt.toLocaleString('id-ID');
+                    productPrice.textContent = "Rp" + priceInt.toLocaleString('id-ID') + ",00";
                     productDetails.appendChild(productPrice);
                 }
 
