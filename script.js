@@ -78,7 +78,6 @@ function fetchSheetData() {
 
             const discountPercent = parseInt(rows[16][1].replace('%', ''), 10);
             const discountActive = rows[16][2];
-            console.log(discountPercent);
             for (let i = 0; i < itemAmount; i++) {
                 const productStartCol = i * 5;
                 const itemName = currentRow[productStartCol + 1];
@@ -295,43 +294,4 @@ document.getElementById("popup-modal").addEventListener("click", function (e) {
 
 /* KEEP THIS ALWAYS ON THE BOTTOM */
 
-const loginForm = document.getElementById('login');
-
-loginForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const url = `https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/Emails!B2:B?key=${API_KEY}`
-
-    const email = document.getElementById('email-input').value;
-
-    try {
-        const response = await fetch(url);
-        if (!response.ok) {
-            throw new Error("Failed to fetch data from Google Sheets.");
-        }
-
-        const data = await response.json();
-        const emails = data.values ? data.values.flat() : [];
-
-        if (emails.includes(email)) {
-            localStorage.setItem('emailLogged', email);
-            window.location.href = '/';
-        } else {
-            const googleFormURL = "https://docs.google.com/forms/d/e/1umBfASoo9k-xIZJLKP4-A61T7Z7fpiNKoT_yp7Axu_8/formResponse";
-
-            const formData = new URLSearchParams();
-            formData.append("entry.1865599997", email);
-
-            await fetch(googleFormURL, {
-                method: "POST",
-                body: formData,
-                mode: "no-cors",
-            });
-
-            localStorage.setItem('emailLogged', email);
-            window.location.href = '/';
-        }
-    } catch (error) {
-        console.error("Error:", error);
-        alert("An error occurred. Please try again.");
-    }
-});
+console.log("version 5.1 TEST");
