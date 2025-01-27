@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="description" content="LEINÉ Clothing Store">
+    <meta name="keywords" content="LEINÉ, LEINE, leine, leinestore, clothing, leine clothing, leine">
+    <meta name="robots" content="index,follow">
+    <script src="https://kit.fontawesome.com/8904a90371.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Arapey:ital@0;1&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <title>LEINÉ - 404</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: "Montserrat", serif;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        .title-font {
+            font-family: "Arapey", serif;
+            font-weight: 400;
+            font-style: normal;
+            text-decoration: none;
+            color: #000;
+        }
+
+        header {
+            top: 0;
+            left: 0;
+            margin: 0;
+            position: fixed;
+            z-index: 1000;
+            width: 100%;
+            background: #fff;
+            color: #000;
+            padding: 5px 0;
+            align-items: center;
+            display: flex;
+            transition: transform 0.3s ease, background-color 0.3s ease-in;
+        }
+
+        header h1 {
+            margin: 10px;
+            margin-left: 1em;
+            font-size: 2rem;
+            user-select: none;
+            cursor: pointer;
+        }
+
+        nav {
+            margin-left: auto;
+            margin-right: 1em;
+        }
+
+        nav ul {
+            margin: 0px;
+            list-style: none;
+            padding: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: #707070;
+            transition: color 0.3s ease-in;
+            text-decoration: none;
+        }
+
+        nav ul li a:hover {
+            color: #000000;
+        }
+
+        #menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            margin-left: auto;
+            margin-right: 1em;
+        }
+
+        @media (max-width: 550px) {
+            nav ul {
+                display: flex;
+                flex-direction: column;
+                background: #fff;
+                position: absolute;
+                top: 100%;
+                right: 0;
+                width: 100%;
+                max-height: 0;
+                overflow: hidden;
+                opacity: 0;
+                transition: max-height 0.5s ease, opacity 0.5s ease;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+
+            nav ul.active {
+                max-height: 300px;
+                opacity: 1;
+            }
+
+            nav ul li {
+                margin: 10px 0;
+                text-align: center;
+            }
+
+            #menu-toggle {
+                display: block;
+            }
+        }
+
+        h1 {
+            font-weight: 700;
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        p {
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+
+        .button {
+            padding: 10px 20px;
+            font-size: 1em;
+            color: #fff;
+            background-color: #000;
+            border: 2px solid #000;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            text-decoration: none;
+        }
+
+        .button:hover {
+            background-color: transparent;
+            color: #000000;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1 id="header-text" class="title-font"><a href="/" class="title-font">LEINÉ</a></h1>
+
+        <nav>
+            <ul id="menu">
+                <li><a href="about">ABOUT</a></li>
+                <li><a href="size">SIZE GUIDE</a></li>
+                <li><a href="contact">CONTACT</a></li>
+            </ul>
+        </nav>
+
+        <button id="menu-toggle" aria-label="Toggle navigation">☰</button>
+    </header>
+
+    <div class="container">
+        <h1>Successfully sent your message!</h1>
+        <p>Response will be sent via your email.</p>
+        <a class="button" href="/">Home</a>
+    </div>
+
+    <script>
+        const menuToggle = document.getElementById("menu-toggle");
+        const menu = document.getElementById("menu");
+
+        menuToggle.addEventListener("click", () => {
+            menu.classList.toggle("active");
+        });
+    </script>
+</body>
+
+</html>
