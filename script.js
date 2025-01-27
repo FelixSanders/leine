@@ -294,4 +294,4 @@ document.getElementById("popup-modal").addEventListener("click", function (e) {
 
 /* KEEP THIS ALWAYS ON THE BOTTOM */
 
-console.log("version 5.1 TEST");
+console.log("version 5.2 TEST");
