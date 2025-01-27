@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="description" content="LEINÉ Clothing Store">
+    <meta name="keywords" content="LEINÉ, LEINE, leine, leinestore, clothing, leine clothing, leine">
+    <meta name="robots" content="index,follow">
+    <script src="https://kit.fontawesome.com/8904a90371.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Arapey:ital@0;1&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <link rel="stylesheet" href="styles.css">
+    <title>LEINÉ - Login</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-card {
+            width: 300px;
+            padding: 20px;
+            margin: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            background-color: #eee;
+        }
+
+        .login-card h1 {
+            text-align: center;
+        }
+
+        .login-card p {
+            text-align: center;
+            font-size: 0.8rem;
+        }
+
+        .login-card form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .login-card input[type="email"] {
+            margin-bottom: 15px;
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #ccc;
+            outline: none;
+            transition: border-color 0.2s;
+            font-family: 'Montserrat', serif;
+        }
+
+        .login-card input[type="email"]:focus {
+            border-color: #000;
+        }
+
+        .login-card .submit-btn {
+            padding: 10px;
+            font-size: 1rem;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .login-card .submit-btn:hover {
+            background-color: #00000000;
+            color: #000;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="login-card">
+        <h1 class="title-font">LEINÉ</h1>
+        <p>Please input your email before accesing.</p>
+        <form id="login">
+            <input type="email" id="email-input" name="email" maxlength="100" placeholder="Email" required></textarea>
+            <button type="submit" id="submit-btn" class="submit-btn">Submit</button>
+        </form>
+    </div>
+
+    <script src="script.js"></script>
+</body>

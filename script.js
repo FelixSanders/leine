@@ -14,6 +14,56 @@ const currentMonth = currentDate.getMonth();
 const currentYear = currentDate.getFullYear();
 
 
+
+if (!localStorage.getItem("emailLogged")) {
+    if (window.location.pathname !== '/login') {
+        window.location.href = '/login';
+    }
+}
+
+const loginForm = document.getElementById('login');
+
+loginForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const url = `https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/Emails!B2:B?key=${API_KEY}`
+
+    const email = document.getElementById('email-input').value;
+
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error("Failed to fetch data from Google Sheets.");
+        }
+
+        const data = await response.json();
+        const emails = data.values ? data.values.flat() : [];
+
+        if (emails.includes(email)) {
+            localStorage.setItem('emailLogged', email);
+            window.location.href = '/';
+        } else {
+            const googleFormURL = "https://docs.google.com/forms/d/e/1umBfASoo9k-xIZJLKP4-A61T7Z7fpiNKoT_yp7Axu_8/formResponse";
+
+            const formData = new URLSearchParams();
+            formData.append("entry.1865599997", email);
+
+            await fetch(googleFormURL, {
+                method: "POST",
+                body: formData,
+                mode: "no-cors",
+            });
+
+            localStorage.setItem('emailLogged', email);
+            window.location.href = '/';
+        }
+    } catch (error) {
+        console.error("Error:", error);
+        alert("An error occurred. Please try again.");
+    }
+});
+
+
+
 function startCountdownToNextMonth(display) {
     const now = new Date();
     const nextMonth = new Date(now.getFullYear(), now.getMonth() + 1, 1);
@@ -200,9 +250,9 @@ function fetchReviews() {
         .catch(error => console.error('Error fetching data from Google Sheets:', error));
 }
 
-const form = document.getElementById('review-form');
+const reviewForm = document.getElementById('review-form');
 
-form.addEventListener('submit', (e) => {
+reviewForm.addEventListener('submit', (e) => {
     e.preventDefault();
 
     const reviewText = document.getElementById('review-text').value;
@@ -219,7 +269,7 @@ form.addEventListener('submit', (e) => {
     })
         .then(() => {
             alert("Review submitted successfully!");
-            form.reset();
+            reviewForm.reset();
         })
         .catch((error) => {
             console.error("Error submitting the form:", error);
@@ -277,3 +327,4 @@ document.getElementById("popup-modal").addEventListener("click", function (e) {
         document.body.classList.remove("no-scroll");
     }
 });
+
