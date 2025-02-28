@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <meta name="description" content="LEINÉ Clothing Store">
-    <meta name="keywords" content="LEINÉ, LEINE, leine, leinestore, clothing, leine clothing, leine">
+    <meta name="description" content="LIVORD Clothing Store">
+    <meta name="keywords" content="LIVORD, livord, livordstore, clothing, livord clothing">
     <meta name="robots" content="index,follow">
     <script src="https://kit.fontawesome.com/8904a90371.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,7 +15,7 @@
         rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
     <link rel="stylesheet" href="styles.css">
-    <title>LEINÉ - Login</title>
+    <title>LIVORD - Login</title>
     <style>
         body {
             margin: 0;
@@ -23,11 +23,19 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background-image: url('images/banner/loginBackground.png');
-            background-position: center bottom;
+            background-image: url('images/banner/loginBackground.jpg');
+            background-position: left -50px;
             background-repeat: no-repeat;
             background-size: cover;
         }
+
+        @media (max-width: 1000px) {
+            body {
+                background-position: left top;
+            }
+        }
+
+
 
         .login-card {
             width: 300px;
@@ -85,7 +93,7 @@
 
 <body>
     <div class="login-card">
-        <h1 class="title-font">LEINÉ</h1>
+        <h1 class="title-font">LIVORD</h1>
         <p>Please input your email before accessing.</p>
         <form id="login">
             <input type="email" id="email-input" name="email" maxlength="100" placeholder="Email" required></textarea>
